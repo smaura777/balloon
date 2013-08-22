@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Slideshow R&amp;D</title>
+	<meta name="generator" content="BBEdit 10.5" />
+	<!-- Add jQuery library -->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+   
+
+	
+	<!--
+	<link rel="stylesheet" href="lightbox/css/screen.css" type="text/css" media="screen" />
+	-->
+	
+	
+<style type="text/css">
+
+   * {
+        padding:0;
+     margin:0;
+   } 
+
+   body {
+     font-size: 14px;
+     font-family: helvetica, arial;
+     line-height: 24px;
+     padding:0;
+     margin:0;
+   } 
+   h1 {
+     font-size: 44px;
+      line-height: 110%;
+   }
+   
+   h3 {
+   		font-size: 24px;
+   		line-height: 110%;
+   }
+   article {
+     max-width:832px;
+     min-width: 343px;
+   }
+   
+   .gallery {
+      /** outline: 1px solid orange; **/
+      max-height: 468px;
+      max-width: 832px;
+      background: #000; 
+      
+   }
+   
+   img.flexible {
+      min-width:  100%;
+      max-width:  100%;  
+      max-height: 438px;
+    }
+    
+    
+     img.in_overlay {
+        max-width:  960px;  
+        max-height: 640px;
+     }
+    
+   .gallery-bar {
+      height: 30px;
+      width: 100%;
+      background-image: url(assets/bar.png);
+    }
+  
+    
+  .gallery-slides {
+       max-height: 438px;
+       position: relative;
+   } 
+   
+   ul.slideshow_tools {
+    height: 100%;
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+      text-align: center;
+   }
+   
+    ul.slideshow_tools li {
+        height: 100%;
+    	float:left;
+    }
+    
+     ul.slideshow_tools li.thumbnail_action {
+        background-image: url(assets/thumbnail_button.png) ;
+        background-repeat:no-repeat;
+        background-position:center; 
+        width: 30px;
+     } 
+     
+      ul.slideshow_tools li.play_action {
+        background-image: url(assets/play_button.png) ;
+        background-repeat:no-repeat;
+        background-position:center; 
+        width: 28px;
+        border-left: 1px solid #fff;
+         border-right: 1px solid #fff;
+        
+     }
+      
+     ul.slideshow_tools li.slide_action {
+        width: 742px;
+     }  
+     
+      
+     
+     ul.slideshow_tools li.popout_action {
+       background-image: url(assets/popout_button.png) ;
+        background-repeat:no-repeat;
+        background-position:center; 
+        width: 29px;
+         border-left: 1px solid #fff;
+     } 
+     
+     ul.btn_group {
+      height: 100%;
+      width: 169px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0;
+      list-style-type: none;
+      text-align: center;
+     }
+     
+      ul.btn_group li {
+       height: 100%;
+       float:left;
+      }
+      
+    ul.btn_group li.right_arrow,
+    ul.btn_group li.left_arrow
+    {
+        width: 30px;		     
+    }
+    
+    ul.btn_group li.right_arrow {
+       background-image: url(assets/right-arrow.png) ;
+        background-repeat:no-repeat;
+        background-position:center; 
+    }
+    
+     ul.btn_group li.left_arrow {
+       background-image: url(assets/left-arrow.png) ;
+        background-repeat:no-repeat;
+        background-position:center; 
+    }
+   
+   
+   div.previous_slide {
+      background-color: black;
+   		width: 35px;
+   		height: 35px;
+   		float: left;
+   		-webkit-border-radius: 999px;
+        -moz-border-radius: 999px;
+         border-radius: 999px;
+         background-image: url(assets/left-slide.png) ;
+        background-repeat:no-repeat;
+        background-position:center; 
+   }
+   
+   div.next_slide {
+   		background-color: black;
+   		width:  35px;
+   		height: 35px;
+   		float: right;
+   		-webkit-border-radius: 999px;
+        -moz-border-radius: 999px;
+         border-radius: 999px;
+         
+         background-image: url(assets/right-slide.png) ;
+        background-repeat:no-repeat;
+        background-position:center;
+   }
+   
+   div.slide_nav_wrapper {
+     position: absolute;
+   	 top: 190px;
+   	 width: 100%;
+   	 outline: 1px solid yellow;
+   }
+  
+  .gallery_overlay_content_slide_wrapper div.slide_nav_wrapper{
+  	  top: 300px;
+  	  outline: 1px solid green;
+  }
+  
+  
+  .gallery_overlay {
+    position: absolute;
+    background-color: #000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+    z-index: 500;
+    
+  } 
+  
+   .gallery_overlay_content {
+      padding: 16px 16px 16px 16px;
+      background: #fff; 
+      opacity: 1;
+      position: absolute;
+      z-index: 1000;
+      top: 10%;
+      left: 25%;
+      max-width: 960px;
+      outline: 1px solid gray; 
+      
+   }
+
+  .hideClass{
+  	display:none;
+  }
+
+.gallery_overlay_content_slide_wrapper {
+   position: relative;
+}
+
+.gallery_overlay_content_credit_wrap {
+	overflow: auto;
+}
+
+#gallery_overlay_credit {
+	float: right;
+	right: 3px;
+}
+
+
+.gallery_overlay_close {
+	width: 30px;
+	height: 30px;
+	background-color: #000;
+	background-image: url(assets/lightbox_close.png) ;
+    background-repeat:no-repeat;
+    background-position:center; 
+    position: absolute;
+   	top: 0;
+   	right:0;
+}
+
+
+.gallery-wrapper{
+   max-width: 832px;
+}
+
+.gallery-caption-area {
+   border-bottom: 1px solid #ccc;
+   padding-bottom: 16px; 
+}
+
+.gallery-caption-content_credit_wrap {
+	overflow: auto;	
+}
+
+#gallery-caption-content_credit {
+	float: right;
+	right: 3px;
+	margin-bottom: 8px;
+}
+
+</style>
+
+</head>
+
+<body>
+<div id="log"></div>
+
+<div class="gallery_overlay hideClass"></div>
+
+ <div class="gallery_overlay_content hideClass">
+     <div class="gallery_overlay_content_slide_wrapper"> 
+     	
+     	<img class="in_overlay"  src="img/ballons02-1024.jpg" />
+     	
+     	<div class="slide_nav_wrapper">
+        	<div class="previous_slide"></div>
+        	<div class="next_slide"></div>
+        </div>  
+        
+        <div class="gallery_overlay_close">
+            
+        </div>
+      
+     </div>
+     
+     <div class="gallery_overlay_content_meta">
+     	<div class="gallery_overlay_content_credit_wrap">
+     		<div id="gallery_overlay_credit">Lorem ipsum Lorem ipsum Lorem ipsum </div>
+     	</div>
+     	<div class="gallery_overlay_content_caption">
+     	Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+     		Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+     	</div>
+     </div>
+ </div>
+
+<div class="main_page">
+	<div>
+	
+	
+	<div>
+	
+	<h1>No politician likely to try to stop BART strike</h1>
+	<h3>Politicians have too much to lose to force settlement</h3>
+	
+ <!-- Gallery wrapper  -->	
+<div class="gallery-wrapper">
+
+	<!-- Gallery  -->	                        
+	<div class="gallery" id="gallery_item1">
+  
+  		<!-- Gallery slides -->
+  		<div class="gallery-slides"> 
+      		<img id="gallery_item1" class="flexible" src="img/ballons02-1024.jpg" />
+      
+      		<div class="slide_nav_wrapper">
+        		<div class="previous_slide"></div>
+        		<div class="next_slide"></div>
+      		</div>  
+           
+  		</div>
+  		<!-- Gallery slides end -->
+  
+  		<!-- gallery bar -->
+  		<div class="gallery-bar">
+   			<ul class="slideshow_tools">
+      			<li class="tool thumbnail_action" >
+          			<div class="btn"></div>
+      			</li>
+      			<li class="tool play_action" >
+         			<div class="btn"></div>
+      			</li>
+      			<li class="tool slide_action">
+          			<ul class="btn_group">
+             			<li class="tool_detail left_arrow"></li>    
+              			<li class="tool_detail counter"> 
+                 			<span class="counter_item">image</span>
+                 			<span class="counter_item">0</span>
+                 			<span class="counter_item">out of</span>
+                 			<span class="counter_item">0</span>  
+             			</li>    
+              			<li class="tool_detail right_arrow"> </li>    
+          			</ul>
+          			
+      			</li>
+      			<li class="tool popout_action"> </li>
+   			</ul>
+  		</div>
+  		<!-- end of gallery bar -->
+  
+  	</div>
+  <!-- end of gallery -->
+
+   <!-- Gallery caption  -->
+   <div class="gallery-caption-area">
+   
+        <!-- credit -->
+        <div class="gallery-caption-content_credit_wrap">
+     		<div id="gallery-caption-content_credit">Lorem ipsum Lorem ipsum Lorem ipsum </div>
+     	</div>
+     	<!-- credit end -->
+     	
+   		<div class="gallery-caption-content">
+   			Donec sit amet arcu lacus. Nulla pulvinar non augue eu tincidunt. Nullam
+   			 sodales odio non nunc hendrerit ornare. Aenean in felis at nisi facilisis	
+   			 Donec sit amet arcu lacus. Nulla pulvinar non augue eu tincidunt. Nullam
+   			 sodales odio non nunc hendrerit ornare. Aenean in felis at nisi facilisis	
+   		</div>
+   </div>
+  <!-- Gallery caption end --> 
+     
+
+</div>
+ <!-- Gallery wrapper end   -->
+
+
+
+<div>
+  <button onclick="launchFullscreen(document.getElementById('gallery_item1'));" class="sexyButton">Launch Fullscreen</button>
+</div>
+
+<div>
+  <button onclick="launchLightbox();" class="sexyButton">Launch lightbox</button>
+</div>
+
+
+<div class="article_content">	                        
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pulvinar dictum ante, a porttitor leo lobortis ac.
+Quisque eu massa vitae lacus lacinia auctor. Fusce sed congue leo. Curabitur dapibus sollicitudin sem at tristique. 
+Sed sollicitudin ac ligula vitae consequat. Vivamus ut felis iaculis, mattis lacus ac, vehicula nisi. In hac habitasse platea
+dictumst. Vivamus suscipit euismod dui, ac posuere libero luctus non.
+</p>
+<p>
+Donec sit amet arcu lacus. Nulla pulvinar non augue eu tincidunt. Nullam sodales odio non nunc hendrerit ornare.
+ Aenean in felis at nisi facilisis dignissim. Ut a lectus nec risus cursus lobortis non ac urna. Nulla auctor sem 
+ id pretium aliquet. Cras bibendum nibh eget neque dapibus, id ullamcorper neque ullamcorper.
+
+Curabitur ac lectus id nisl malesuada vehicula a in mauris. Proin eu mi posuere, posuere dui ac, vehicula ipsum. 
+Cras in condimentum nibh, in luctus nunc. Morbi egestas, lacus ac tincidunt tincidunt, ligula ipsum sagittis lacus,
+ vel tempor dolor neque sit amet justo. Aliquam semper sed est quis condimentum. Pellentesque ac accumsan nibh.
+  Phasellus lacinia, lectus in ornare ultrices, nisi felis semper sapien, imperdiet ultricies nisl sapien non neque. 
+  Nullam nisi nulla, facilisis molestie tempus sit amet, bibendum non nunc. Aliquam ligula magna, mollis ac pulvinar ac,
+   accumsan ut nulla. Quisque sodales purus eu neque imperdiet suscipit. Pellentesque sit amet libero vehicula, aliquet 
+   odio in, porta lacus. Aliquam ut ligula quis nulla consequat rhoncus convallis at sem.
+</p>
+<p>
+Curabitur pulvinar congue nulla et interdum. Suspendisse dictum lobortis diam, ac egestas augue consectetur et. Nullam pretium
+ ligula nec nunc condimentum ornare. Phasellus lacus dolor, sollicitudin id pharetra non, sodales in nulla. Morbi commodo nulla 
+ commodo nibh interdum, eget euismod massa ultricies. Curabitur nec dictum ante. Cras porttitor sodales convallis. Aliquam dapibus 
+ congue nibh eget lacinia. Curabitur purus tortor, auctor nec auctor sit amet, laoreet sit amet libero. Nullam ante nisl, dictum id 
+ risus a, euismod vehicula est. Quisque tincidunt diam id metus faucibus posuere. Praesent ultrices ut odio at malesuada.
+</p>
+</div>
+	      
+</div>
+	   
+	   
+	</div>
+</div>
+
+
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+
+<script type="text/javascript">
+/**
+	alert($('body'));
+	
+	(function($){ // Best practice
+	
+	$.fn.water = function(options){
+			alert("Plug it in !");
+		return this;	
+	};
+	
+	}(jQuery));
+	
+	
+	$('body').water();
+**/
+
+
+// Refs
+
+var OVERLAY_CLOSE_BTN = $('div.gallery_overlay_close');
+var POPOUT_BTN = $('li.popout_action');
+
+var GALLERY_NEXT_SLIDE_BTN = $('div.gallery div.next_slide');
+var GALLERY_PREVIOUS_SLIDE_BTN =  $('div.gallery div.previous_slide');
+
+var POPOUT_GALLERY_NEXT_SLIDE_BTN = $('div.gallery_overlay_content div.next_slide');
+var POPOUT_GALLERY_PREVIOUS_SLIDE_BTN = $('div.gallery_overlay_content div.previous_slide');
+
+
+
+
+// ======== Events ==========
+
+OVERLAY_CLOSE_BTN.click(function(){
+	launchLightbox();
+}) ;
+
+
+POPOUT_BTN.click(function(){
+	launchLightbox();
+});
+
+GALLERY_NEXT_SLIDE_BTN.click(function(){
+	alert('next slide');
+});
+
+GALLERY_PREVIOUS_SLIDE_BTN.click(function(){
+	alert('previous slide');
+});
+
+POPOUT_GALLERY_NEXT_SLIDE_BTN.click(function(){
+	alert('next slide');
+});
+
+POPOUT_GALLERY_PREVIOUS_SLIDE_BTN.click(function(){
+	alert('previous slide');
+});
+
+
+$(window).resize(function() {
+  //$('#log').append('<div>Handler for .resize() called.</div>');
+  updateOverlay();  
+});
+
+
+
+
+// =========== functions =========
+
+function pageHeight(){
+   return document.body.scrollHeight;
+}
+
+function pageWidth(){
+  return document.body.scrollWidth;
+}
+
+function updateOverlay(){
+  $(".gallery_overlay").css('height',''+ pageHeight() +'px');
+  $(".gallery_overlay").css('width',''+ pageWidth() +'px');
+}
+
+
+function showLightboxContent(){
+	if ($("div.gallery_overlay_content").hasClass('hideClass') ){
+	    $("div.gallery_overlay_content").removeClass('hideClass');
+	}
+	else {
+	   $("div.gallery_overlay_content").addClass('hideClass');	
+	}
+}
+
+function launchLightbox(){
+	
+	if ($("div.gallery_overlay").hasClass('hideClass') ){
+	    $("div.gallery_overlay").removeClass('hideClass');
+	    updateOverlay();
+	    showLightboxContent();
+	}
+	else {
+	   $("div.gallery_overlay").addClass('hideClass');	
+	   showLightboxContent();
+	}
+	
+}
+
+
+
+
+
+console.log("pageWidth == "+ pageWidth() + " pageHeight == "+ pageHeight() +  " ");
+
+
+
+
+</script>
+
+
+
+
+
+
+
+<script>
+  // Find the right method, call on correct element
+function launchFullscreen(element) {
+   
+  if(element.requestFullScreen) {
+    element.requestFullScreen();
+    console.log("the eleement");
+  } else if(element.mozRequestFullScreen) {
+    element.mozRequestFullScreen();
+  } else if(element.webkitRequestFullScreen) {
+    element.webkitRequestFullScreen();
+    console.log("the eleement webkit");
+  }
+}
+
+
+</script>
+
+</body>
+</html>
