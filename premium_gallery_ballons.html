@@ -44,7 +44,7 @@
    
    .gallery {
       /** outline: 1px solid orange; **/
-      height: 468px;
+      max-height: 468px;
       max-width: 832px;
       background: #000; 
       
@@ -53,7 +53,8 @@
    img.flexible {
       min-width:  100%;
       max-width:  100%;  
-      max-height: 438px;
+      max-height: 100%;
+      min-height: 100%;
     }
     
     
@@ -72,6 +73,7 @@
   .gallery-slides {
        height: 438px;
        position: relative;
+       overflow:hidden;
    } 
    
    ul.slideshow_tools {
@@ -120,7 +122,7 @@
      
      ul.btn_group {
       height: 100%;
-      width: 169px;
+      width: 180px;
       margin-left: auto;
       margin-right: auto;
       padding: 0;
@@ -183,12 +185,11 @@
      position: absolute;
    	 top: 190px;
    	 width: 100%;
-   	 outline: 1px solid yellow;
+   	 
    }
   
   .gallery_overlay_content_slide_wrapper div.slide_nav_wrapper{
   	  top: 300px;
-  	  outline: 1px solid green;
   }
   
   
@@ -234,6 +235,9 @@
 	right: 3px;
 }
 
+.gallery_overlay_content_title {
+	font-weight: bold;
+}
 
 .gallery_overlay_close {
 	width: 30px;
@@ -267,6 +271,26 @@
 	margin-bottom: 8px;
 }
 
+
+/**  ===== Thumbnails ===== **/
+
+div.gallery-thumbnails_container {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top:0;
+	left: 0;
+	background-color: #fff;
+	opacity: 0.75;
+}
+
+div.gallery-thumbnails_container .gallery-thumbnails_wrapper {
+   outline: 1px solid red;
+   padding: 30px;
+}
+
+
+
 </style>
 
 </head>
@@ -279,7 +303,7 @@
  <div class="gallery_overlay_content hideClass">
      <div class="gallery_overlay_content_slide_wrapper"> 
      	
-     	<img class="in_overlay"  src="img/ballons02-1024.jpg" />
+     	<img class="in_overlay" id="popout_gallery_image_item" src="" />
      	
      	<div class="slide_nav_wrapper">
         	<div class="previous_slide"></div>
@@ -296,12 +320,25 @@
      	<div class="gallery_overlay_content_credit_wrap">
      		<div id="gallery_overlay_credit">Lorem ipsum Lorem ipsum Lorem ipsum </div>
      	</div>
-     	<div class="gallery_overlay_content_caption">
-     	Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
-     		Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+     	<div class="gallery_overlay_content_caption_wrap">
+     	    <span class="gallery_overlay_content_title">Test title lightbox</span>
+     	    <span class="gallery_overlay_content_caption"> Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+     		Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum </span> 
+     		
+     		
      	</div>
      </div>
  </div>
+
+
+
+
+
+
+
+
+
+
 
 <div class="main_page">
 	<div>
@@ -315,6 +352,9 @@
  <!-- Gallery wrapper  -->	
 <div class="gallery-wrapper">
 
+	<div class="gallery_slide_title">
+		TEST SLIDE TITLE
+	</div>
 	<!-- Gallery  -->	                        
 	<div class="gallery" id="gallery_item1">
   
@@ -322,6 +362,13 @@
   		<div class="gallery-slides"> 
   		     
       		<img id="gallery_image_item" class="flexible" src="" />
+      		
+      		<!-- THUMBNAILS  -->
+      		<div class="gallery-thumbnails_container">
+      			<div class="gallery-thumbnails_wrapper"></div>
+      		</div>
+      		<!-- THUMBNAILS END -->
+      		
             
       		<div class="slide_nav_wrapper">
         		<div class="previous_slide"></div>
@@ -345,9 +392,9 @@
              			<li class="tool_detail left_arrow"></li>    
               			<li class="tool_detail counter"> 
                  			<span class="counter_item">image</span>
-                 			<span class="counter_item">0</span>
+                 			<span class="counter_item gallery_current_index">0</span>
                  			<span class="counter_item">out of</span>
-                 			<span class="counter_item">0</span>  
+                 			<span class="counter_item gallery_total">0</span>  
              			</li>    
               			<li class="tool_detail right_arrow"> </li>    
           			</ul>
@@ -771,27 +818,27 @@ var imageData = [
 		portrait_image: 'img/ballons01-1024.jpg',
 		landscape_image: 'img/ballons01-1024.jpg',
 		thumbnail_image: 'img/ballons01-small.jpg',
-		title:  'This is balloon 1 title',
-		caption: 'This is balloon 1 caption',
-		credit:  'Le dirigeable',
+		title:  'This is balloon 16 title',
+		caption: 'This is balloon 16 caption',
+		credit:  'Le dirigeable 16',
 		related: 'Balloon fire 1936'
 	},
 	{
 		portrait_image: 'img/ballons01-1024.jpg',
 		landscape_image: 'img/ballons01-1024.jpg',
 		thumbnail_image: 'img/ballons01-small.jpg',
-		title:  'This is balloon 1 title',
-		caption: 'This is balloon 1 caption',
-		credit:  'Le dirigeable',
+		title:  'This is balloon 17 title',
+		caption: 'This is balloon 17 caption',
+		credit:  'Le dirigeable 17',
 		related: 'Balloon fire 1936'
 	},
 	{
 		portrait_image: 'img/ballons01-1024.jpg',
 		landscape_image: 'img/ballons01-1024.jpg',
 		thumbnail_image: 'img/ballons01-small.jpg',
-		title:  'This is balloon 1 title',
-		caption: 'This is balloon 1 caption',
-		credit:  'Le dirigeable',
+		title:  'This is balloon 18 title',
+		caption: 'This is balloon 18 caption',
+		credit:  'Le dirigeable 18',
 		related: 'Balloon fire 1936'
 	},
 		
@@ -806,20 +853,51 @@ var  CURRENT_SLIDE_INDEX = 0;
 var  POPOUT_CURRENT_SLIDE_INDEX = 0;
 
 var SLIDE_COUNT = 0;
+var GALLERY_COUNTER_INDEX = 0;
+var POPOUT_GALLERY_COUNTER_INDEX = 0;
+var GALLERY_COUNTER_TOTAL = 0;
  
+ 
+// ======== REFERENCES ========
 
-// Refs
+// Overlay open/close 
 var OVERLAY_CLOSE_BTN = $('div.gallery_overlay_close');
 var POPOUT_BTN = $('li.popout_action');
 
+// Left/right gallery  & gallery bar arrows
 var GALLERY_NEXT_SLIDE_BTN = $('div.gallery div.next_slide');
 var GALLERY_PREVIOUS_SLIDE_BTN =  $('div.gallery div.previous_slide');
+var GALLERY_BAR_NEXT_SLIDE_BTN = $('li.right_arrow');
+var GALLERY_BAR_PREVIOUS_SLIDE_BTN = $('li.left_arrow');
 
+
+
+// Left/right POPOUT gallery arrows
 var POPOUT_GALLERY_NEXT_SLIDE_BTN = $('div.gallery_overlay_content div.next_slide');
 var POPOUT_GALLERY_PREVIOUS_SLIDE_BTN = $('div.gallery_overlay_content div.previous_slide');
 
-var GALLERY_IMAGE_ITEM = $('#gallery_image_item');
 
+// SLIDE IMAGE ELEMENT 
+var GALLERY_IMAGE_ITEM = $('#gallery_image_item');
+var POPOUT_GALLERY_IMAGE_ITEM = $('#popout_gallery_image_item');
+
+
+// Slide counter
+var GALLERY_COUNTER_INDEX_REF = $('span.gallery_current_index');
+var GALLERY_COUNTER_TOTAL_REF = $('span.gallery_total');
+
+
+// GALLERY TEXT METADATA
+var GALLERY_TITLE = $('.gallery_slide_title');
+var GALLERY_CREDIT = $('#gallery-caption-content_credit');
+var GALLERY_CAPTION = $('.gallery-caption-content');
+
+
+
+// POPOUT GALLERY TEXT METADATA
+var POPOUT_GALLERY_TITLE = $('.gallery_overlay_content_title');
+var POPOUT_GALLERY_CREDIT = $('#gallery_overlay_credit');
+var POPOUT_GALLERY_CAPTION = $('.gallery_overlay_content_caption');
 
 
 // ======== Events ==========
@@ -831,6 +909,7 @@ OVERLAY_CLOSE_BTN.click(function(){
 
 POPOUT_BTN.click(function(){
 	launchLightbox();
+	popout_gallery_first();
 });
 
 GALLERY_NEXT_SLIDE_BTN.click(function(){
@@ -845,13 +924,27 @@ GALLERY_PREVIOUS_SLIDE_BTN.click(function(){
 	
 });
 
+GALLERY_BAR_NEXT_SLIDE_BTN.click(function(){
+	console.log('bar next slide');
+	gallery_next();
+});
+
+GALLERY_BAR_PREVIOUS_SLIDE_BTN.click(function(){
+	console.log('bar previous slide');
+	gallery_previous();
+});
+
+
+
 POPOUT_GALLERY_NEXT_SLIDE_BTN.click(function(){
-	alert('next slide');
+	console.log('lightbox next slide');
+	popout_gallery_next();
 	
 });
 
 POPOUT_GALLERY_PREVIOUS_SLIDE_BTN.click(function(){
-	alert('previous slide');
+	console.log('lightbox previous slide');
+	popout_gallery_previous();
 });
 
 
@@ -958,20 +1051,177 @@ function updateSlideshowState(){
    		
 }
 
+function updateText(el, new_text){
+	if (typeof el !== 'undefined'){
+		el.text(new_text);
+	}
+	else {
+		console.log('undefined text element');
+	}
+}
+
 
 
 // ====  Gallery ops =======
+
+// Update inline gallery caption to match current slide 
+function update_gallery_caption(){
+    var caption_text = imageData[CURRENT_SLIDE_INDEX].caption || '';
+    updateText(GALLERY_CAPTION,caption_text);
+}
+
+// Update inline gallery credit to match current slide 
+function update_gallery_credit(){
+	var credit_text = imageData[CURRENT_SLIDE_INDEX].credit || '';
+	 updateText(GALLERY_CREDIT,credit_text);
+}
+
+// Update inline gallery title to match current slide 
+function update_gallery_title(){
+	var title_text = imageData[CURRENT_SLIDE_INDEX].title || '';
+	 updateText(GALLERY_TITLE,title_text);
+}
+
+
+// Just a wrapper 
+function update_gallery_text_metadata(){
+	update_gallery_title();
+    update_gallery_credit();
+    update_gallery_caption();
+}
+
+
+
+
+// ==========================================================
+
+
+
+
+// Update popout gallery caption to match current slide 
+
+function popout_update_gallery_caption(){
+    var caption_text = imageData[POPOUT_CURRENT_SLIDE_INDEX].caption || '';
+    updateText(POPOUT_GALLERY_CAPTION,caption_text);
+}
+
+// Update popout  gallery credit to match current slide 
+function popout_update_gallery_credit(){
+	var credit_text = imageData[POPOUT_CURRENT_SLIDE_INDEX].credit || '';
+	 updateText(POPOUT_GALLERY_CREDIT,credit_text);
+}
+
+// Update popout gallery title to match current slide 
+function popout_update_gallery_title(){
+	var title_text = imageData[POPOUT_CURRENT_SLIDE_INDEX].title || '';
+	 updateText(POPOUT_GALLERY_TITLE,title_text);
+}
+
+
+// Just a wrapper 
+function popout_update_gallery_text_metadata(){
+	popout_update_gallery_title();
+    popout_update_gallery_credit();
+    popout_update_gallery_caption();
+}
+
+
+
+
+
+
+// ==========================================================
+
+
+function update_gallery_arrows(){
+
+     // ====== FORWARD ======
+     
+   	// Hide right arrow if we are at the end of the slide 
+   	if ((CURRENT_SLIDE_INDEX + 1) == SLIDE_COUNT){
+   	    GALLERY_NEXT_SLIDE_BTN.hide();
+   	    GALLERY_BAR_NEXT_SLIDE_BTN.hide();
+   	}
+   	else {
+   	    GALLERY_NEXT_SLIDE_BTN.show();	
+   	    GALLERY_BAR_NEXT_SLIDE_BTN.show();	
+   	} 
+   	
+   	// ===== BACKWARD =======
+   	// Hide left arrow if we are at the beginning  
+   	if (CURRENT_SLIDE_INDEX == 0) {
+   		GALLERY_PREVIOUS_SLIDE_BTN.hide();
+   		GALLERY_BAR_PREVIOUS_SLIDE_BTN.hide();
+   	}
+   	else {
+   		GALLERY_PREVIOUS_SLIDE_BTN.show();
+   		GALLERY_BAR_PREVIOUS_SLIDE_BTN.show();
+   	}
+   	
+}
+
+
+
+function  popout_update_gallery_arrows(){
+	// ====== FORWARD ======
+     
+   	// Hide right arrow if we are at the end of the slide 
+   	if ((POPOUT_CURRENT_SLIDE_INDEX + 1) == SLIDE_COUNT){
+   	    POPOUT_GALLERY_NEXT_SLIDE_BTN.hide();
+   	}
+   	else {
+   	    POPOUT_GALLERY_NEXT_SLIDE_BTN.show();	
+   	} 
+   	
+   	// ===== BACKWARD =======
+   	// Hide left arrow if we are at the beginning  
+   	if (POPOUT_CURRENT_SLIDE_INDEX == 0) {
+   		POPOUT_GALLERY_PREVIOUS_SLIDE_BTN.hide();
+   	}
+   	else {
+   		POPOUT_GALLERY_PREVIOUS_SLIDE_BTN.show();
+   	}
+   	
+}
+
+
+function gallery_counter_update(){
+  // Update & display current index and total
+  if ( (typeof GALLERY_COUNTER_INDEX_REF !== 'undefined' ) && (typeof GALLERY_COUNTER_TOTAL_REF !== 'undefined') ){
+  	  	GALLERY_COUNTER_INDEX_REF.text(''+ (CURRENT_SLIDE_INDEX + 1)  +'');
+  	  	GALLERY_COUNTER_TOTAL_REF.text(''+ SLIDE_COUNT +'');
+  }
+  else {
+  	console.log('undefined gallery counters');
+  }
+  
+}
+
+
+
+
+
+
 
 function gallery_first(){
    var image_url = imageData[CURRENT_SLIDE_INDEX].portrait_image;
    console.log(image_url);
    loadImage(GALLERY_IMAGE_ITEM,image_url);
+   gallery_counter_update();
+   update_gallery_arrows();
+   update_gallery_text_metadata();
    
 }
 
 
 function popout_gallery_first(){
-  
+    POPOUT_CURRENT_SLIDE_INDEX = CURRENT_SLIDE_INDEX;
+	var image_url = imageData[POPOUT_CURRENT_SLIDE_INDEX].landscape_image;
+   console.log(image_url);
+   
+   loadImage(POPOUT_GALLERY_IMAGE_ITEM,image_url);
+   popout_update_gallery_arrows();
+   popout_update_gallery_text_metadata();
 }
 
 
@@ -986,7 +1236,9 @@ function gallery_next(){
    var image_url = imageData[CURRENT_SLIDE_INDEX].portrait_image;
    console.log(image_url);
    loadImage(GALLERY_IMAGE_ITEM,image_url);
-    
+   gallery_counter_update();
+   update_gallery_arrows();
+   update_gallery_text_metadata();
   
 }
 
@@ -1000,31 +1252,43 @@ function gallery_previous(){
    var image_url = imageData[CURRENT_SLIDE_INDEX].portrait_image;
    console.log(image_url);
    loadImage(GALLERY_IMAGE_ITEM,image_url);
+   gallery_counter_update();
+   update_gallery_arrows();
+   update_gallery_text_metadata();
 }
 
 function popout_gallery_next(){
-
+  if (SLIDE_COUNT == (POPOUT_CURRENT_SLIDE_INDEX + 1) ){
+     // stop if we are at the end of the slide 
+     return;
+  }
+  
+  POPOUT_CURRENT_SLIDE_INDEX += 1;  // Increment current index
+   var image_url = imageData[POPOUT_CURRENT_SLIDE_INDEX].landscape_image;
+   console.log(image_url);
+   loadImage(POPOUT_GALLERY_IMAGE_ITEM,image_url);
+   popout_update_gallery_arrows();
+   popout_update_gallery_text_metadata();
 }
 
 function popout_gallery_previous(){
-
+	if (POPOUT_CURRENT_SLIDE_INDEX == 0){
+       // stop if we are already at the beginning 
+      return;
+   }
+   
+   POPOUT_CURRENT_SLIDE_INDEX -= 1;  // decrement the current index
+   var image_url = imageData[POPOUT_CURRENT_SLIDE_INDEX].landscape_image;
+   console.log(image_url);
+   loadImage(POPOUT_GALLERY_IMAGE_ITEM,image_url);
+   popout_update_gallery_arrows();
+   popout_update_gallery_text_metadata();
+   
 }
 
-function gallery_update_counter(){
 
-}
 
-function popout_gallery_update_counter(){
 
-}
-
-function gallery_update_metadata(){
-
-}
-
-function popout_gallery_update_metadata(){
-
-}
 
 
 // ==== Thumbnail ops =======
