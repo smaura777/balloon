@@ -282,6 +282,7 @@ div.gallery-thumbnails_container {
 	left: 0;
 	background-color: #fff;
 	opacity: 0.75;
+	display: none;
 }
 
 div.gallery-thumbnails_container .gallery-thumbnails_wrapper {
@@ -858,7 +859,7 @@ var POPOUT_GALLERY_COUNTER_INDEX = 0;
 var GALLERY_COUNTER_TOTAL = 0;
  
  
-// ======== REFERENCES ========
+// ============================ REFERENCES ============================
 
 // Overlay open/close 
 var OVERLAY_CLOSE_BTN = $('div.gallery_overlay_close');
@@ -870,6 +871,10 @@ var GALLERY_PREVIOUS_SLIDE_BTN =  $('div.gallery div.previous_slide');
 var GALLERY_BAR_NEXT_SLIDE_BTN = $('li.right_arrow');
 var GALLERY_BAR_PREVIOUS_SLIDE_BTN = $('li.left_arrow');
 
+
+// == THUMBNAILS == 
+var GALLERY_THUMBNAILS_BTN = $('li.thumbnail_action');
+var GALLERY_THUMBNAILS = $('div.gallery-thumbnails_container');
 
 
 // Left/right POPOUT gallery arrows
@@ -945,6 +950,20 @@ POPOUT_GALLERY_NEXT_SLIDE_BTN.click(function(){
 POPOUT_GALLERY_PREVIOUS_SLIDE_BTN.click(function(){
 	console.log('lightbox previous slide');
 	popout_gallery_previous();
+});
+
+
+GALLERY_THUMBNAILS_BTN.click(function(){
+	console.log('Thumbnail show/hide');
+	
+	if (GALLERY_THUMBNAILS.is(":visible")){
+		GALLERY_THUMBNAILS.hide(); 	  			
+	}
+	else {
+		GALLERY_THUMBNAILS.show();
+		gallery_load_thumbnails();
+	}
+	
 });
 
 
@@ -1289,7 +1308,16 @@ function popout_gallery_previous(){
 
 
 
-
+function gallery_load_thumbnails(){
+  console.log('Load thumbnails called');
+  var load_count = (imageData.length > 16) ? 16 : imageData.length;
+  console.log('load count : '+ load_count);
+  
+  for (var i = 0; i < load_count; i++){
+  	 console.log('thumbnail ==> '+ imageData[i].thumbnail_image);
+  }
+  
+}
 
 // ==== Thumbnail ops =======
 
