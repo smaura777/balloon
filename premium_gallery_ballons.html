@@ -44,8 +44,8 @@
    
    .gallery {
       /** outline: 1px solid orange; **/
-      max-height: 468px;
-      max-width: 832px;
+      height: 468px;
+      width: 832px;
       background: #000; 
       
    }
@@ -130,10 +130,16 @@
       text-align: center;
      }
      
-      ul.btn_group li {
+    ul.btn_group li {
        height: 100%;
        float:left;
-      }
+    }
+      
+    ul.btn_group li.counter {
+    	outline: 1px solid red;
+    	height: 22px;
+        margin-top: 2px;
+    } 
       
     ul.btn_group li.right_arrow,
     ul.btn_group li.left_arrow
@@ -184,8 +190,9 @@
    div.slide_nav_wrapper {
      position: absolute;
    	 top: 190px;
-   	 width: 100%;
-   	 
+   	 width: 96%;
+   	 margin-left: 2%;
+   	 margin-right: 2%;
    }
   
   .gallery_overlay_content_slide_wrapper div.slide_nav_wrapper{
@@ -253,7 +260,7 @@
 
 
 .gallery-wrapper{
-   max-width: 832px;
+   width: 832px;
 }
 
 .gallery-caption-area {
@@ -325,6 +332,56 @@ img.thumbnail_item {
    width: 160px;
    height: 90px; 
 }
+
+
+/** 1024 **/
+
+@media  (max-width: 1024px){
+
+	.gallery {
+		max-width: 708px;
+		height: 398px;
+	}
+	
+	.gallery-bar {
+      height: 40px;
+	}
+	
+	ul.slideshow_tools li.slide_action {
+		width: 612px;
+	}
+	
+	
+	 ul.btn_group li.counter {
+        margin-top: 8px;
+    } 
+    
+   .gallery-wrapper{
+   		max-width: 708px;
+ 	}
+
+	.gallery-slides {
+	 	height: 398px;
+	 
+	 }	
+	
+   .gallery-caption-area {
+      margin-top: 40px;
+   }
+	
+    .gallery_overlay_content_meta {
+    	display: none;
+    }	
+	
+	.gallery_overlay_content {
+		padding: 0;
+		background: none;
+		top: 16%;
+	}
+	
+} 
+
+/** 320 **/
 
 
 </style>
@@ -1335,6 +1392,7 @@ var THUMBNAIL_WRAPPER_AREA = $('div.gallery-thumbnails_wrapper');
 
 OVERLAY_CLOSE_BTN.click(function(){
 	launchLightbox();
+	repositionLightbox();
 }) ;
 
 
@@ -1467,7 +1525,7 @@ function repositionLightbox(){
       console.log("lightbox at center " + (window_halfwidth - lightbox_halfwidth));
    }
    else {
-      lightbox.css('left','10%');	
+      lightbox.css('left','0');	
       console.log('window too small');  
    }
 }
