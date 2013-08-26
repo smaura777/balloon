@@ -77,11 +77,11 @@
    } 
    
    ul.slideshow_tools {
-    height: 100%;
-      margin: 0;
-      padding: 0;
-      list-style-type: none;
-      text-align: center;
+     height: 100%;
+     margin: 0;
+     padding: 0;
+     list-style-type: none;
+     text-align: center;
    }
    
     ul.slideshow_tools li {
@@ -107,17 +107,17 @@
      }
       
      ul.slideshow_tools li.slide_action {
-        width: 742px;
+       width: 742px;
      }  
      
       
      
-     ul.slideshow_tools li.popout_action {
+    ul.slideshow_tools li.popout_action {
        background-image: url(assets/popout_button.png) ;
-        background-repeat:no-repeat;
-        background-position:center; 
-        width: 29px;
-         border-left: 1px solid #fff;
+       background-repeat:no-repeat;
+       background-position:center; 
+       width: 29px;
+       border-left: 1px solid #fff;
      } 
      
      ul.btn_group {
@@ -287,9 +287,44 @@ div.gallery-thumbnails_container {
 
 div.gallery-thumbnails_container .gallery-thumbnails_wrapper {
    outline: 1px solid red;
-   padding: 30px;
+   background-color: red;
+   width: 800px;
+   margin-left:auto;
+   margin-right: auto;
+   margin-top: 1px;
+   /**
+   padding: 30px ;
+  **/
 }
 
+div.thumbnail_row {
+	overflow: auto;
+}
+
+ul.thumbnail_cells {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;	
+  padding-left: 17px;
+}
+
+ul.thumbnail_cells > li{
+   float: left;	
+   outline:1px solid red;
+   margin-right: 42px;
+   margin-left: 0px;
+   margin-top: 10px;
+   padding: 0;
+}
+
+ul.thumbnail_cells > li.thumbnail_cell_last {
+   margin-right:0px;	
+}
+
+img.thumbnail_item {
+   width: 160px;
+   height: 90px; 
+}
 
 
 </style>
@@ -366,7 +401,45 @@ div.gallery-thumbnails_container .gallery-thumbnails_wrapper {
       		
       		<!-- THUMBNAILS  -->
       		<div class="gallery-thumbnails_container">
-      			<div class="gallery-thumbnails_wrapper"></div>
+      			<div class="gallery-thumbnails_wrapper">
+      			     <!--
+      				<div class="thumbnail_row">
+      					<ul class="thumbnail_cells">
+      						<li><img class="thumbnail_item" src="img/ballons01-small.jpg"> </li>
+      						<li><img class="thumbnail_item" src="img/ballons01-small.jpg"> </li>
+      						<li><img class="thumbnail_item" src="img/ballons01-small.jpg"> </li>
+      						<li class="thumbnail_cell_last"><img class="thumbnail_item" src="img/ballons01-small.jpg"> </li>
+      					</ul>
+      				</div>
+      				<div class="thumbnail_row">
+      					<ul class="thumbnail_cells">
+      						<li><img class="thumbnail_item" src="img/ballons01-small.jpg"> </li>
+      						<li><img class="thumbnail_item" src="img/ballons01-small.jpg"> </li>
+      						<li><img class="thumbnail_item" src="img/ballons01-small.jpg"> </li>
+      						<li class="thumbnail_cell_last"><img class="thumbnail_item" src="img/ballons01-small.jpg"> </li>
+      					</ul>
+      				</div>
+      				<div class="thumbnail_row">
+      					<ul class="thumbnail_cells">
+      						<li><img class="thumbnail_item" src="img/ballons01-small.jpg"> </li>
+      						<li><img class="thumbnail_item" src="img/ballons01-small.jpg"> </li>
+      						<li><img class="thumbnail_item" src="img/ballons01-small.jpg"> </li>
+      						<li class="thumbnail_cell_last"><img class="thumbnail_item" src="img/ballons01-small.jpg"> </li>
+      					</ul>
+      				</div>
+      				<div class="thumbnail_row">
+      					<ul class="thumbnail_cells">
+      						<li><img class="thumbnail_item" src="img/ballons01-small.jpg"> </li>
+      						<li><img class="thumbnail_item" src="img/ballons01-small.jpg"> </li>
+      						<li><img class="thumbnail_item" src="img/ballons01-small.jpg"> </li>
+      						<li class="thumbnail_cell_last"><img class="thumbnail_item" src="img/ballons01-small.jpg"> </li>
+      					</ul>
+      				</div>
+      				
+      				-->
+      				
+      				
+      			</div>
       		</div>
       		<!-- THUMBNAILS END -->
       		
@@ -816,18 +889,18 @@ var imageData = [
 		related: 'Balloon fire 1936 15'
 	},
 	{
-		portrait_image: 'img/ballons01-1024.jpg',
-		landscape_image: 'img/ballons01-1024.jpg',
-		thumbnail_image: 'img/ballons01-small.jpg',
+		portrait_image: 'img/ballons03-1024.jpg',
+		landscape_image: 'img/ballons03-1024.jpg',
+		thumbnail_image: 'img/ballons03-small.jpg',
 		title:  'This is balloon 16 title',
 		caption: 'This is balloon 16 caption',
 		credit:  'Le dirigeable 16',
 		related: 'Balloon fire 1936'
 	},
 	{
-		portrait_image: 'img/ballons01-1024.jpg',
-		landscape_image: 'img/ballons01-1024.jpg',
-		thumbnail_image: 'img/ballons01-small.jpg',
+		portrait_image: 'img/ballons02-1024.jpg',
+		landscape_image: 'img/ballons02-1024.jpg',
+		thumbnail_image: 'img/ballons02-small.jpg',
 		title:  'This is balloon 17 title',
 		caption: 'This is balloon 17 caption',
 		credit:  'Le dirigeable 17',
@@ -842,8 +915,352 @@ var imageData = [
 		credit:  'Le dirigeable 18',
 		related: 'Balloon fire 1936'
 	},
+	
+	{
+		portrait_image: 'img/ballons01-1024.jpg',
+		landscape_image: 'img/ballons01-1024.jpg',
+		thumbnail_image: 'img/ballons01-small.jpg',
+		title:  'This is balloon 1 title',
+		caption: 'This is balloon 1 caption',
+		credit:  'Le dirigeable',
+		related: 'Balloon fire 1936'
+	},
+	{
+		portrait_image: 'img/ballons02-1024.jpg',
+		landscape_image: 'img/ballons02-1024.jpg',
+		thumbnail_image: 'img/ballons02-small.jpg',
+		title:  'This is balloon 2 title',
+		caption: 'This is balloon 2 caption',
+		credit:  'Le dirigeable 2',
+		related: 'Balloon fire 1936 2'
+	},
+	{
+		portrait_image: 'img/ballons03-1024.jpg',
+		landscape_image: 'img/ballons03-1024.jpg',
+		thumbnail_image: 'img/ballons03-small.jpg',
+		title:  'This is balloon 3 title',
+		caption: 'This is balloon 3 caption',
+		credit:  'Le dirigeable 3',
+		related: 'Balloon fire 1936'
+	},
+	{
+		portrait_image: 'img/ballons04-1024.jpg',
+		landscape_image: 'img/ballons04-1024.jpg',
+		thumbnail_image: 'img/ballons04-small.jpg',
+		title:  'This is balloon 4 title',
+		caption: 'This is balloon 4 caption',
+		credit:  'Le dirigeable 4',
+		related: 'Balloon fire 1936 4'
+	},
+	{
+		portrait_image: 'img/ballons05-1024.jpg',
+		landscape_image: 'img/ballons05-1024.jpg',
+		thumbnail_image: 'img/ballons05-small.jpg',
+		title:  'This is balloon 5 title',
+		caption: 'This is balloon 5 caption',
+		credit:  'Le dirigeable 5',
+		related: 'Balloon fire 1936'
+	},
+	{
+		portrait_image: 'img/ballons06-1024.jpg',
+		landscape_image: 'img/ballons06-1024.jpg',
+		thumbnail_image: 'img/ballons06-small.jpg',
+		title:  'This is balloon 6 title',
+		caption: 'This is balloon 6 caption',
+		credit:  'Le dirigeable 6',
+		related: 'Balloon fire 1936'
+	},
+	{
+		portrait_image: 'img/ballons07-1024.jpg',
+		landscape_image: 'img/ballons07-1024.jpg',
+		thumbnail_image: 'img/ballons07-small.jpg',
+		title:  'This is balloon 7 title',
+		caption: 'This is balloon 7 caption',
+		credit:  'Le dirigeable 7',
+		related: 'Balloon fire 1936'
+	},
+	{
+		portrait_image: 'img/ballons08-1024.jpg',
+		landscape_image: 'img/ballons08-1024.jpg',
+		thumbnail_image: 'img/ballons08-small.jpg',
+		title:  'This is balloon 8 title',
+		caption: 'This is balloon 8 caption',
+		credit:  'Le dirigeable 8',
+		related: 'Balloon fire 1936 8'
+	},
+	{
+		portrait_image: 'img/ballons09-1024.jpg',
+		landscape_image: 'img/ballons09-1024.jpg',
+		thumbnail_image: 'img/ballons09-small.jpg',
+		title:  'This is balloon 9 title',
+		caption: 'This is balloon 9 caption',
+		credit:  'Le dirigeable 9',
+		related: 'Balloon fire 1936 9'
+	},
+	{
+		portrait_image: 'img/ballons10-1024.jpg',
+		landscape_image: 'img/ballons10-1024.jpg',
+		thumbnail_image: 'img/ballons10-small.jpg',
+		title:  'This is balloon 10 title',
+		caption: 'This is balloon 10 caption',
+		credit:  'Le dirigeable 10',
+		related: 'Balloon fire 1936'
+	},
+	{
+		portrait_image: 'img/ballons11-1024.jpg',
+		landscape_image: 'img/ballons11-1024.jpg',
+		thumbnail_image: 'img/ballons11-small.jpg',
+		title:  'This is balloon 11 title',
+		caption: 'This is balloon 11 caption',
+		credit:  'Le dirigeable 11',
+		related: 'Balloon fire 1936'
+	},
+	{
+		portrait_image: 'img/ballons12-1024.jpg',
+		landscape_image: 'img/ballons12-1024.jpg',
+		thumbnail_image: 'img/ballons12-small.jpg',
+		title:  'This is balloon 12 title',
+		caption: 'This is balloon 12 caption',
+		credit:  'Le dirigeable 12',
+		related: 'Balloon fire 1936'
+	},
+	{
+		portrait_image: 'img/ballons13-1024.jpg',
+		landscape_image: 'img/ballons13-1024.jpg',
+		thumbnail_image: 'img/ballons13-small.jpg',
+		title:  'This is balloon 13 title',
+		caption: 'This is balloon 13 caption',
+		credit:  'Le dirigeable 13',
+		related: 'Balloon fire 1936'
+	},
+	{
+		portrait_image: 'img/ballons14-1024.jpg',
+		landscape_image: 'img/ballons14-1024.jpg',
+		thumbnail_image: 'img/ballons14-small.jpg',
+		title:  'This is balloon 14 title',
+		caption: 'This is balloon 14 caption',
+		credit:  'Le dirigeable 14',
+		related: 'Balloon fire 1936 14'
+	},
+	{
+		portrait_image: 'img/ballons15-1024.jpg',
+		landscape_image: 'img/ballons15-1024.jpg',
+		thumbnail_image: 'img/ballons15-small.jpg',
+		title:  'This is balloon 15 title',
+		caption: 'This is balloon 15 caption',
+		credit:  'Le dirigeable 15',
+		related: 'Balloon fire 1936 15'
+	},
+	{
+		portrait_image: 'img/ballons03-1024.jpg',
+		landscape_image: 'img/ballons03-1024.jpg',
+		thumbnail_image: 'img/ballons03-small.jpg',
+		title:  'This is balloon 16 title',
+		caption: 'This is balloon 16 caption',
+		credit:  'Le dirigeable 16',
+		related: 'Balloon fire 1936'
+	},
+	{
+		portrait_image: 'img/ballons02-1024.jpg',
+		landscape_image: 'img/ballons02-1024.jpg',
+		thumbnail_image: 'img/ballons02-small.jpg',
+		title:  'This is balloon 17 title',
+		caption: 'This is balloon 17 caption',
+		credit:  'Le dirigeable 17',
+		related: 'Balloon fire 1936'
+	},
+	{
+		portrait_image: 'img/ballons01-1024.jpg',
+		landscape_image: 'img/ballons01-1024.jpg',
+		thumbnail_image: 'img/ballons01-small.jpg',
+		title:  'This is balloon 18 title',
+		caption: 'This is balloon 18 caption',
+		credit:  'Le dirigeable 18',
+		related: 'Balloon fire 1936'
+	},
+	
+	
+	
+	
+	
+	
+	
+	
+	{
+		portrait_image: 'img/ballons01-1024.jpg',
+		landscape_image: 'img/ballons01-1024.jpg',
+		thumbnail_image: 'img/ballons01-small.jpg',
+		title:  'This is balloon 1 title',
+		caption: 'This is balloon 1 caption',
+		credit:  'Le dirigeable',
+		related: 'Balloon fire 1936'
+	},
+	{
+		portrait_image: 'img/ballons02-1024.jpg',
+		landscape_image: 'img/ballons02-1024.jpg',
+		thumbnail_image: 'img/ballons02-small.jpg',
+		title:  'This is balloon 2 title',
+		caption: 'This is balloon 2 caption',
+		credit:  'Le dirigeable 2',
+		related: 'Balloon fire 1936 2'
+	},
+	{
+		portrait_image: 'img/ballons03-1024.jpg',
+		landscape_image: 'img/ballons03-1024.jpg',
+		thumbnail_image: 'img/ballons03-small.jpg',
+		title:  'This is balloon 3 title',
+		caption: 'This is balloon 3 caption',
+		credit:  'Le dirigeable 3',
+		related: 'Balloon fire 1936'
+	},
+	{
+		portrait_image: 'img/ballons04-1024.jpg',
+		landscape_image: 'img/ballons04-1024.jpg',
+		thumbnail_image: 'img/ballons04-small.jpg',
+		title:  'This is balloon 4 title',
+		caption: 'This is balloon 4 caption',
+		credit:  'Le dirigeable 4',
+		related: 'Balloon fire 1936 4'
+	},
+	{
+		portrait_image: 'img/ballons05-1024.jpg',
+		landscape_image: 'img/ballons05-1024.jpg',
+		thumbnail_image: 'img/ballons05-small.jpg',
+		title:  'This is balloon 5 title',
+		caption: 'This is balloon 5 caption',
+		credit:  'Le dirigeable 5',
+		related: 'Balloon fire 1936'
+	},
+	{
+		portrait_image: 'img/ballons06-1024.jpg',
+		landscape_image: 'img/ballons06-1024.jpg',
+		thumbnail_image: 'img/ballons06-small.jpg',
+		title:  'This is balloon 6 title',
+		caption: 'This is balloon 6 caption',
+		credit:  'Le dirigeable 6',
+		related: 'Balloon fire 1936'
+	},
+	{
+		portrait_image: 'img/ballons07-1024.jpg',
+		landscape_image: 'img/ballons07-1024.jpg',
+		thumbnail_image: 'img/ballons07-small.jpg',
+		title:  'This is balloon 7 title',
+		caption: 'This is balloon 7 caption',
+		credit:  'Le dirigeable 7',
+		related: 'Balloon fire 1936'
+	},
+	{
+		portrait_image: 'img/ballons08-1024.jpg',
+		landscape_image: 'img/ballons08-1024.jpg',
+		thumbnail_image: 'img/ballons08-small.jpg',
+		title:  'This is balloon 8 title',
+		caption: 'This is balloon 8 caption',
+		credit:  'Le dirigeable 8',
+		related: 'Balloon fire 1936 8'
+	},
+	{
+		portrait_image: 'img/ballons09-1024.jpg',
+		landscape_image: 'img/ballons09-1024.jpg',
+		thumbnail_image: 'img/ballons09-small.jpg',
+		title:  'This is balloon 9 title',
+		caption: 'This is balloon 9 caption',
+		credit:  'Le dirigeable 9',
+		related: 'Balloon fire 1936 9'
+	},
+	{
+		portrait_image: 'img/ballons10-1024.jpg',
+		landscape_image: 'img/ballons10-1024.jpg',
+		thumbnail_image: 'img/ballons10-small.jpg',
+		title:  'This is balloon 10 title',
+		caption: 'This is balloon 10 caption',
+		credit:  'Le dirigeable 10',
+		related: 'Balloon fire 1936'
+	},
+	{
+		portrait_image: 'img/ballons11-1024.jpg',
+		landscape_image: 'img/ballons11-1024.jpg',
+		thumbnail_image: 'img/ballons11-small.jpg',
+		title:  'This is balloon 11 title',
+		caption: 'This is balloon 11 caption',
+		credit:  'Le dirigeable 11',
+		related: 'Balloon fire 1936'
+	},
+	{
+		portrait_image: 'img/ballons12-1024.jpg',
+		landscape_image: 'img/ballons12-1024.jpg',
+		thumbnail_image: 'img/ballons12-small.jpg',
+		title:  'This is balloon 12 title',
+		caption: 'This is balloon 12 caption',
+		credit:  'Le dirigeable 12',
+		related: 'Balloon fire 1936'
+	},
+	{
+		portrait_image: 'img/ballons13-1024.jpg',
+		landscape_image: 'img/ballons13-1024.jpg',
+		thumbnail_image: 'img/ballons13-small.jpg',
+		title:  'This is balloon 13 title',
+		caption: 'This is balloon 13 caption',
+		credit:  'Le dirigeable 13',
+		related: 'Balloon fire 1936'
+	},
+	{
+		portrait_image: 'img/ballons14-1024.jpg',
+		landscape_image: 'img/ballons14-1024.jpg',
+		thumbnail_image: 'img/ballons14-small.jpg',
+		title:  'This is balloon 14 title',
+		caption: 'This is balloon 14 caption',
+		credit:  'Le dirigeable 14',
+		related: 'Balloon fire 1936 14'
+	},
+	{
+		portrait_image: 'img/ballons15-1024.jpg',
+		landscape_image: 'img/ballons15-1024.jpg',
+		thumbnail_image: 'img/ballons15-small.jpg',
+		title:  'This is balloon 15 title',
+		caption: 'This is balloon 15 caption',
+		credit:  'Le dirigeable 15',
+		related: 'Balloon fire 1936 15'
+	},
+	{
+		portrait_image: 'img/ballons03-1024.jpg',
+		landscape_image: 'img/ballons03-1024.jpg',
+		thumbnail_image: 'img/ballons03-small.jpg',
+		title:  'This is balloon 16 title',
+		caption: 'This is balloon 16 caption',
+		credit:  'Le dirigeable 16',
+		related: 'Balloon fire 1936'
+	},
+	{
+		portrait_image: 'img/ballons02-1024.jpg',
+		landscape_image: 'img/ballons02-1024.jpg',
+		thumbnail_image: 'img/ballons02-small.jpg',
+		title:  'This is balloon 17 title',
+		caption: 'This is balloon 17 caption',
+		credit:  'Le dirigeable 17',
+		related: 'Balloon fire 1936'
+	},
+	{
+		portrait_image: 'img/ballons01-1024.jpg',
+		landscape_image: 'img/ballons01-1024.jpg',
+		thumbnail_image: 'img/ballons01-small.jpg',
+		title:  'This is balloon 18 title',
+		caption: 'This is balloon 18 caption',
+		credit:  'Le dirigeable 18',
+		related: 'Balloon fire 1936'
+	},
+	
+	
+	
+	
+	
+	
 		
 ];
+
+
+
+var THUMBNAIL_PAGE_COUNT = 0;
+var THUMBNAIL_PAGE_INDEX = 0;
 
 //alert(imageData.length);
 
@@ -857,6 +1274,10 @@ var SLIDE_COUNT = 0;
 var GALLERY_COUNTER_INDEX = 0;
 var POPOUT_GALLERY_COUNTER_INDEX = 0;
 var GALLERY_COUNTER_TOTAL = 0;
+
+// Thumbnail states
+
+var GALLERY_THUMBNAIL_VISIBLE = false; 
  
  
 // ============================ REFERENCES ============================
@@ -904,6 +1325,11 @@ var POPOUT_GALLERY_TITLE = $('.gallery_overlay_content_title');
 var POPOUT_GALLERY_CREDIT = $('#gallery_overlay_credit');
 var POPOUT_GALLERY_CAPTION = $('.gallery_overlay_content_caption');
 
+// thumbnails
+
+var THUMBNAIL_WRAPPER_AREA = $('div.gallery-thumbnails_wrapper');
+
+
 
 // ======== Events ==========
 
@@ -919,13 +1345,19 @@ POPOUT_BTN.click(function(){
 
 GALLERY_NEXT_SLIDE_BTN.click(function(){
 	console.log('next slide');
-	gallery_next();
+	if (GALLERY_THUMBNAIL_VISIBLE)
+		gallery_thumbnails_page_next();
+	else
+		gallery_next();
 	
 });
 
 GALLERY_PREVIOUS_SLIDE_BTN.click(function(){
 	console.log('previous slide');
-	gallery_previous();
+	if (GALLERY_THUMBNAIL_VISIBLE)
+		gallery_thumbnails_page_previous();
+	else 
+		gallery_previous();
 	
 });
 
@@ -955,16 +1387,24 @@ POPOUT_GALLERY_PREVIOUS_SLIDE_BTN.click(function(){
 
 GALLERY_THUMBNAILS_BTN.click(function(){
 	console.log('Thumbnail show/hide');
-	
+	show_hide_thumbnail_view();
+	/**
 	if (GALLERY_THUMBNAILS.is(":visible")){
-		GALLERY_THUMBNAILS.hide(); 	  			
+		GALLERY_THUMBNAILS.hide(); 
+		GALLERY_THUMBNAIL_VISIBLE = false;	  	
+		update_gallery_arrows();		
 	}
 	else {
 		GALLERY_THUMBNAILS.show();
-		gallery_load_thumbnails();
+		gallery_thumbnails_page_first();
+		GALLERY_THUMBNAIL_VISIBLE = true;
+		update_gallery_thumbnail_arrows();
 	}
+	**/
 	
 });
+
+
 
 
 $(window).resize(function() {
@@ -983,20 +1423,41 @@ $(window).resize(function() {
 
 // =========== functions =========
 
+
+/**
+ * Extract and returns the document scrollHeight -- full height of the entire document 
+ * 
+ * @return scrollHeight
+ */
 function pageHeight(){
    return document.body.scrollHeight;
 }
 
+/**
+ * Extract and returns the document scrollWidth -- full width of the entire document 
+ * 
+ * @return scrollWidth
+ */
 function pageWidth(){
   return document.body.scrollWidth;
 }
 
+/**
+ * Updates the overlay size to cover the entire document.  
+ * Should be called whenever the view port changes  
+ *
+ * @return none
+ */
 function updateOverlay(){
   $(".gallery_overlay").css('height',''+ pageHeight() +'px');
   $(".gallery_overlay").css('width',''+ pageWidth() +'px');
 }
 
-
+/**
+ * Keep the lightbox centered whenever possible 
+ * 
+ * @return none
+ */
 function repositionLightbox(){
    var lightbox = $('div.gallery_overlay_content');
    var lightbox_halfwidth = lightbox.width()/2;
@@ -1009,10 +1470,13 @@ function repositionLightbox(){
       lightbox.css('left','10%');	
       console.log('window too small');  
    }
-   	
-   	
 }
 
+/**
+ * Hides or shows lightbox 
+ * 
+ * @return none
+ */
 function showLightboxContent(){
 	if ($("div.gallery_overlay_content").hasClass('hideClass') ){
 	    $("div.gallery_overlay_content").removeClass('hideClass');
@@ -1025,6 +1489,12 @@ function showLightboxContent(){
 	}
 }
 
+
+/**
+ * Hides or shows overlay
+ * 
+ * @return none
+ */
 function launchLightbox(){
 	
 	if ($("div.gallery_overlay").hasClass('hideClass') ){
@@ -1040,9 +1510,27 @@ function launchLightbox(){
 }
 
 
+function show_hide_thumbnail_view(){
+	if (GALLERY_THUMBNAILS.is(":visible")){
+		GALLERY_THUMBNAILS.hide(); 
+		GALLERY_THUMBNAIL_VISIBLE = false;	  	
+		update_gallery_arrows();		
+	}
+	else {
+		GALLERY_THUMBNAILS.show();
+		gallery_thumbnails_page_first();
+		GALLERY_THUMBNAIL_VISIBLE = true;
+		update_gallery_thumbnail_arrows();
+	}
+}
 
 // ====== DOM utils
 
+/**
+ * Switch image source 
+ * 
+ * @return none
+ */
 function loadImage(img_tag, path){
     if (typeof img_tag !== 'undefined'){
         img_tag.attr('src', path);		
@@ -1053,6 +1541,11 @@ function loadVideo(tag_obj, path){
 
 }
 
+/**
+ * Initialize slideshow and load first image. 
+ * 
+ * @return none
+ */
 function updateSlideshowState(){
    if (!imageData.length > 0){
    		console.log('No media data found -- bailing out');
@@ -1066,10 +1559,17 @@ function updateSlideshowState(){
    		
    		console.log('Slideshow ready:  count '+ SLIDE_COUNT + ' current index: ' + CURRENT_SLIDE_INDEX +'');
    		gallery_first();
+   		gallery_thumbnails_pageount();
+   		update_gallery_thumbnail_arrows();
    }
    		
 }
 
+/**
+ * Add text to elements
+ * 
+ * @return none
+ */
 function updateText(el, new_text){
 	if (typeof el !== 'undefined'){
 		el.text(new_text);
@@ -1154,6 +1654,7 @@ function popout_update_gallery_text_metadata(){
 
 function update_gallery_arrows(){
 
+    
      // ====== FORWARD ======
      
    	// Hide right arrow if we are at the end of the slide 
@@ -1201,6 +1702,26 @@ function  popout_update_gallery_arrows(){
    		POPOUT_GALLERY_PREVIOUS_SLIDE_BTN.show();
    	}
    	
+}
+
+function update_gallery_thumbnail_arrows(){
+    console.log("Thumbnail page index "+THUMBNAIL_PAGE_INDEX );
+	// Forward 
+	if ( (THUMBNAIL_PAGE_INDEX + 1) == THUMBNAIL_PAGE_COUNT ){
+	      GALLERY_NEXT_SLIDE_BTN.hide();
+	}
+	else {
+		GALLERY_NEXT_SLIDE_BTN.show();
+	}
+	
+	// Backward
+	if (THUMBNAIL_PAGE_INDEX == 0){
+		GALLERY_PREVIOUS_SLIDE_BTN.hide();
+	}
+	else {
+		GALLERY_PREVIOUS_SLIDE_BTN.show();
+	}
+	
 }
 
 
@@ -1261,6 +1782,21 @@ function gallery_next(){
   
 }
 
+function gallery_pick(index){
+	if ((index + 1) > SLIDE_COUNT){
+	// stop if we are going past the end
+		return;
+	}
+	
+	CURRENT_SLIDE_INDEX = index;
+	var image_url = imageData[CURRENT_SLIDE_INDEX].portrait_image;
+    console.log(image_url);
+    loadImage(GALLERY_IMAGE_ITEM,image_url);
+    gallery_counter_update();
+    update_gallery_arrows();
+    update_gallery_text_metadata();
+}
+
 function gallery_previous(){
    if (CURRENT_SLIDE_INDEX == 0){
        // stop if we are already at the beginning 
@@ -1306,18 +1842,140 @@ function popout_gallery_previous(){
 }
 
 
+/**
+ * Load first thumbnail page  -- up to 16
+ *
+ *
+ */
+function gallery_load_thumbnails(thumbnail_start_index){
 
-
-function gallery_load_thumbnails(){
+   var thumb_index = thumbnail_start_index || 0;
+   console.log("Start index == "+ thumbnail_start_index);
   console.log('Load thumbnails called');
-  var load_count = (imageData.length > 16) ? 16 : imageData.length;
+  
+  var left_over = imageData.length - thumbnail_start_index;
+  var load_count = (left_over > 16) ? 16 : left_over;
+  
   console.log('load count : '+ load_count);
   
-  for (var i = 0; i < load_count; i++){
-  	 console.log('thumbnail ==> '+ imageData[i].thumbnail_image);
+  //load_count = 16;
+  
+  var thumbnail_page_html = "<div class='thumbnail_row'><ul class='thumbnail_cells'>";
+  
+  var counter = 0;
+  	while ( counter < load_count){
+  	     var current_thumbnail_selected = false;    
+  	       if (thumb_index == CURRENT_SLIDE_INDEX){
+  	       		console.log("Currently selected image == "+ imageData[thumb_index].thumbnail_image);
+  	       		current_thumbnail_selected = true;  
+  	       } 
+  	
+  	      if (counter == 3 || counter == 7 || counter == 11 || counter == 15){
+  	        
+  	      	if (current_thumbnail_selected){
+  	      		console.log("Currently selected image *********");
+  	        	thumbnail_page_html += "<li class='thumbnail_cell_last' ><img data-thumbnail-index='"+thumb_index+"' style='border: 3px solid #fff; width:154px; height: 84px;' class='thumbnail_item'  src=" + imageData[thumb_index].thumbnail_image +"></li>";
+  	        }
+  	        else {
+  	        	thumbnail_page_html += "<li class='thumbnail_cell_last'><img data-thumbnail-index='"+thumb_index+"' class='thumbnail_item' src=" + imageData[thumb_index].thumbnail_image +"></li>";
+  	        }
+  	      	
+  	      	thumbnail_page_html += "</ul></div>";
+  	      	
+  	      	if ( (counter + 1)  < load_count)
+  	      		thumbnail_page_html += "<div class='thumbnail_row'><ul class='thumbnail_cells'>";
+  	      	
+  	      	console.log('counter : '+ counter);
+  	      }
+  	      else {
+  	      	 if (current_thumbnail_selected){
+  	      	 	console.log("Currently selected image ******+++++***");
+  	        	thumbnail_page_html += "<li><img data-thumbnail-index='"+thumb_index+"' style='border: 3px solid #fff; width:154px; height: 84px;' class='thumbnail_item'  src=" + imageData[thumb_index].thumbnail_image +"></li>";
+  	      	 }
+  	      	 else {
+  	      	 	thumbnail_page_html += "<li><img data-thumbnail-index='"+thumb_index+"' class='thumbnail_item' src="+ imageData[thumb_index].thumbnail_image +"> </li>"; 
+  	      	 }
+  	     	
+  	      }
+  	     	
+  	 	//console.log('thumbnail ==> '+ imageData[i].thumbnail_image);
+  	    counter++;
+  	    thumb_index++;
+  	}
+  	
+  	if (counter < 3){
+  		thumbnail_page_html += "</ul></div>";
+  	}
+  	
+  	 THUMBNAIL_WRAPPER_AREA.html(thumbnail_page_html); 
+  	 
+  	 var THUMBNAIL_IMAGE = $('img.thumbnail_item'); 
+  	 
+  	 THUMBNAIL_IMAGE.click(function(){
+		console.log('Thumbnail clicked '+ $(this).attr('data-thumbnail-index'));
+		show_hide_thumbnail_view();
+		gallery_pick(parseInt($(this).attr('data-thumbnail-index')));
+	 });
+
+	THUMBNAIL_IMAGE.mouseenter(function(){
+	    if (parseInt($(this).attr('data-thumbnail-index')) == CURRENT_SLIDE_INDEX ){
+	    	return
+	    }
+		console.log('Thumbnail enter   '+ this);
+		$(this).css('width','154px');
+		$(this).css('height','84px');
+		$(this).css('border', '3px solid #fff');
+	 });
+	THUMBNAIL_IMAGE.mouseleave(function(){
+		if (parseInt($(this).attr('data-thumbnail-index')) == CURRENT_SLIDE_INDEX ){
+	    	return
+	    }
+		console.log('Thumbnail leave  '+ this);
+		$(this).css('width','160px');
+		$(this).css('height','90px');
+		$(this).css('border', 'none');
+	 });
   }
   
+  	  
+function gallery_thumbnails_pageount(){
+   var page_count = 1;
+   
+   if (imageData.length > 16 ){// Calculate page count 
+   		page_count  = Math.ceil((imageData.length / 16));
+   }
+   
+   THUMBNAIL_PAGE_COUNT = page_count;
+   console.log("Thumbnail page count " + THUMBNAIL_PAGE_COUNT );
 }
+
+function gallery_thumbnails_page_first(){
+    THUMBNAIL_PAGE_INDEX = 0;
+	gallery_load_thumbnails(0);
+	update_gallery_thumbnail_arrows();
+}
+
+function gallery_thumbnails_page_next(){
+	if ( (THUMBNAIL_PAGE_INDEX + 1) < THUMBNAIL_PAGE_COUNT ){
+		THUMBNAIL_PAGE_INDEX++;
+		gallery_load_thumbnails(16 * THUMBNAIL_PAGE_INDEX);
+	}
+	update_gallery_thumbnail_arrows();
+}
+
+function gallery_thumbnails_page_previous(){
+	if (THUMBNAIL_PAGE_INDEX > 0 ){
+		THUMBNAIL_PAGE_INDEX--;
+		gallery_load_thumbnails(16 * THUMBNAIL_PAGE_INDEX);
+	}
+	else if (THUMBNAIL_PAGE_INDEX == 0) {
+		gallery_load_thumbnails(0);
+	}
+	
+	update_gallery_thumbnail_arrows();
+}
+
+
 
 // ==== Thumbnail ops =======
 
@@ -1325,15 +1983,17 @@ function gallery_load_thumbnails(){
 
 console.log("pageWidth == "+ pageWidth() + " pageHeight == "+ pageHeight() +  " window width "+ $(window).width() );
 
-
-
 // Init Slideshow
-
 updateSlideshowState();
 
 
 
+
+
+
 })();
+
+
 
 
 </script>
